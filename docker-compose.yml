@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  stationeers:
+    image: ghcr.io/JohnVidler/docker-stationeers:latest
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    environment:
+      APP_FLAGS: ""
+    ports:
+      - "27015:27015/udp"
+      - "27016:27016/udp"
+      - "8081:8081/tcp"
+    volumes:
+      - ./data/saves:/home/steam/stationeers/saves
+      - ./data/scripts:/home/steam/stationeers/scripts
