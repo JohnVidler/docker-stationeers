@@ -13,5 +13,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build the Docker image
         run: |
-          docker build . --tag ghcr.io/JohnVidler/docker-stationeers:latest
-          docker push ghcr.io/JohnVidler/docker-stationeers:latest
+          docker build . --tag ghcr.io/johnvidler/docker-stationeers:latest
+          docker push ghcr.io/johnvidler/docker-stationeers:latest
