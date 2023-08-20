@@ -24,5 +24,4 @@ EXPOSE 27015/udp
 # Game port (UDP) <-- connect to this one!
 EXPOSE 27016/udp
 
-ENTRYPOINT [ "rocketstation_DedicatedServer.x86_64" ]
-CMD [ "-settingspath", "/home/steam/stationeers/saves/server_settings.xml", $APP_FLAGS ]
+ENTRYPOINT [ "rocketstation_DedicatedServer.x86_64", "-settingspath", "/home/steam/stationeers/saves/server_settings.xml" ]
