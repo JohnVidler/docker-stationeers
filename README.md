@@ -8,7 +8,7 @@ I've been using this for my multiplayer world(s) for some time now with no issue
 
 If you find my work useful, consider tipping me via [my ko-fi account](https://ko-fi.com/johnvidler) - every little helps and is greatly appreciated!
 
-## Running via `docker compose`
+## Running via `docker compose`
 
 Either clone this repository, or create a new folder with the `docker-compose.yml` file and `data` folder present, then from the same path as the `docker-compose.yml` file just
 run `docker compose up` (or `docker compose up -d` to run this in the background) and you should, after a little wait while the server builds have a full stationeers server instance.
