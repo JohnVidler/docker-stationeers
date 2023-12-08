@@ -6,6 +6,8 @@ It does occasionally fail to build, as the SteamCMD process just explodes with n
 
 I've been using this for my multiplayer world(s) for some time now with no issues.
 
+If you find my work useful, consider tipping me via [my ko-fi account](https://ko-fi.com/johnvidler) - every little helps and is greatly appreciated!
+
 ## Running via `docker compose`
 
 Either clone this repository, or create a new folder with the `docker-compose.yml` file and `data` folder present, then from the same path as the `docker-compose.yml` file just
