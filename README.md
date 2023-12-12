@@ -6,7 +6,9 @@ It does occasionally fail to build, as the SteamCMD process just explodes with n
 
 I've been using this for my multiplayer world(s) for some time now with no issues.
 
-If you find my work useful, consider tipping me via [my ko-fi account](https://ko-fi.com/johnvidler) - every little helps and is greatly appreciated!
+If you find my work useful, consider tipping me via Ko-fi, every little helps and is greatly appreciated!
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K8L32E3)
 
 ## Running via `docker compose`
 
