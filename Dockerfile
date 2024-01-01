@@ -15,6 +15,18 @@ USER steam
 WORKDIR "$STEAM_APP_PATH"
 ENV PATH="$STEAM_APP_PATH:$PATH"
 
+ENV AUTH_SECRET    ""
+ENV VISIBLE        true
+ENV PORT           27016
+ENV NAME           "Docker Stationeers"
+ENV SAVE_NAME      "game_instance"
+ENV DEFAULT_WORLD  "moon"
+ENV PASSWORD       ""
+ENV AUTOSAVE       true
+ENV SAVE_INTERVAL  300
+ENV MAX_PLAYERS    10
+ENV UPNP_ON        true
+
 # Meta Server port (TCP).
 EXPOSE 8081/tcp
 
@@ -24,4 +36,19 @@ EXPOSE 27015/udp
 # Game port (UDP) <-- connect to this one!
 EXPOSE 27016/udp
 
-ENTRYPOINT [ "rocketstation_DedicatedServer.x86_64", "-settingspath", "/home/steam/stationeers/saves/server_settings.xml" ]
+#ENTRYPOINT [ "rocketstation_DedicatedServer.x86_64", "-settingspath", "/home/steam/stationeers/saves/server_settings.xml" ]
+ENTRYPOINT [ \
+    "rocketstation_DedicatedServer.x86_64", \
+    "-loadlatest", ${SAVE_NAME}, ${DEFAULT_WORLD}, \
+    "-settings", \
+    "StartLocalHost", "true", \
+    "ServerVisible", ${VISIBLE}, \
+    "ServerName", ${NAME}, \
+    "GamePort", ${PORT}, \
+    "ServerPassword", ${PASSWORD}, \
+    "AutoSave", ${AUTOSAVE}, \
+    "SaveInterval", ${SAVE_INTERVAL}, \
+    "ServerMaxPlayers", ${MAX_PLAYERS}, \
+    "UPNPEnabled", ${UPNP_ON}, \
+    "ServerAuthSecret", ${AUTH_SECRET} \
+]

@@ -7,7 +7,11 @@ services:
     tty: true
     restart: unless-stopped
     environment:
-      APP_FLAGS: ""
+      VISIBLE:       true
+      NAME:          "Docker Stationeers"
+      DEFAULT_WORLD: "moon"
+      PASSWORD:      "password"
+      MAX_PLAYERS:   10
     ports:
       - "27015:27015/udp"
       - "27016:27016/udp"
