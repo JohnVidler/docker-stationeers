@@ -37,18 +37,4 @@ EXPOSE 27015/udp
 EXPOSE 27016/udp
 
 #ENTRYPOINT [ "rocketstation_DedicatedServer.x86_64", "-settingspath", "/home/steam/stationeers/saves/server_settings.xml" ]
-ENTRYPOINT [ \
-    "rocketstation_DedicatedServer.x86_64", \
-    "-loadlatest", ${SAVE_NAME}, ${DEFAULT_WORLD}, \
-    "-settings", \
-    "StartLocalHost", "true", \
-    "ServerVisible", ${VISIBLE}, \
-    "ServerName", ${NAME}, \
-    "GamePort", ${PORT}, \
-    "ServerPassword", ${PASSWORD}, \
-    "AutoSave", ${AUTOSAVE}, \
-    "SaveInterval", ${SAVE_INTERVAL}, \
-    "ServerMaxPlayers", ${MAX_PLAYERS}, \
-    "UPNPEnabled", ${UPNP_ON}, \
-    "ServerAuthSecret", ${AUTH_SECRET} \
-]
+ENTRYPOINT [ "rocketstation_DedicatedServer.x86_64", "-load", ${SAVE_NAME}, ${DEFAULT_WORLD}, "-settings", "StartLocalHost", "true", "ServerVisible", ${VISIBLE}, "ServerName", ${NAME}, "GamePort", ${PORT}, "ServerPassword", ${PASSWORD}, "AutoSave", ${AUTOSAVE}, "SaveInterval", ${SAVE_INTERVAL}, "ServerMaxPlayers", ${MAX_PLAYERS}, "UPNPEnabled", ${UPNP_ON}, "ServerAuthSecret", ${AUTH_SECRET} ]
