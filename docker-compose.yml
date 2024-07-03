@@ -1,21 +1,20 @@
-version: "3"
-
 services:
   stationeers:
-    image: ghcr.io/JohnVidler/docker-stationeers:latest
+    image: docker-stationeers:latest
     stdin_open: true
     tty: true
     restart: unless-stopped
     environment:
-      VISIBLE:       true
-      NAME:          "Docker Stationeers"
-      DEFAULT_WORLD: "moon"
-      PASSWORD:      "password"
-      MAX_PLAYERS:   10
+      SV_VISIBLE:       true
+      SV_NAME:          "Docker Stationeers"
+      SV_DEFAULT_WORLD: "Moon"
+      SV_PASSWORD:      "private"
+      SV_MAX_PLAYERS:   10
     ports:
       - "27015:27015/udp"
       - "27016:27016/udp"
+      - "27015:27015"
+      - "27016:27016"
       - "8081:8081/tcp"
     volumes:
-      - ./data/saves:/home/steam/stationeers/saves
-      - ./data/scripts:/home/steam/stationeers/scripts
+      - ./data:/home/steam/stationeers/saves

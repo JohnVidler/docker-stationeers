@@ -1,0 +1,24 @@
+#!/bin/bash
+
+pushd "${STEAM_APP_PATH}"
+
+rocketstation_DedicatedServer.x86_64 \
+        -batchmode \
+        -nographics \
+        -autostart \
+        -difficulty "${SV_DIFFICULTY}" \
+        -loadlatest "${SV_SAVE_NAME}" ${SV_DEFAULT_WORLD} \
+        -settings \
+            StartLocalHost "True" \
+            ServerVisible "${SV_VISIBLE}" \
+            ServerName "${SV_NAME}" \
+            GamePort ${SV_PORT} \
+            ServerPassword "${SV_PASSWORD}" \
+            AutoSave "${SV_AUTOSAVE}" \
+            SaveInterval ${SV_SAVE_INTERVAL} \
+            ServerMaxPlayers ${SV_MAX_PLAYERS} \
+            UPNPEnabled "${SV_UPNP_ON}" \
+            ServerAuthSecret "${SV_AUTH_SECRET}" \
+            LocalIpAddress "0.0.0.0"
+
+popd

@@ -18,3 +18,18 @@ run `docker compose up` (or `docker compose up -d` to run this in the background
 Save data will be saved in `data/saves` and scripts can be placed in `data/scripts`
 
 Note that to connect to the server you'll need to have ports 27015/udp, 27016/udp, 8081/tcp open on your docker host too.
+
+## Supported Configuration via Environment Variables
+
+- SV_AUTH_SECRET - Any string
+- SV_VISIBLE - `"True"` or `"False"`, defaults to `True`
+- SV_PORT - Any valid port, defaults to `27016`
+- SV_NAME - Any string, defaults to `"Docker Stationeers"`
+- SV_SAVE_NAME - Any string, defaults to `"multiplayer"`
+- SV_DEFAULT_WORLD - One of `Moon` `Mars` `Vulcan` etc.
+- SV_PASSWORD - Any string
+- SV_AUTOSAVE - `"True"` or `"False"`, defaults to `True`
+- SV_SAVE_INTERVAL - In seconds. Defaults to 5 minutes, aka. `"300"` seconds
+- SV_MAX_PLAYERS - Maximum players connected, defaults to `"10"`
+- SV_UPNP_ON - `"True"` or `"False"`, defaults to `True`, recommended
+- SV_DIFFICULTY - Any valid difficulty level, defaults to `"normal"`
