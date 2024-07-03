@@ -22,6 +22,7 @@ WORKDIR "/opt/launch"
 RUN mkdir -p /opt/launch/launch.d
 COPY launch.d /opt/launch/launch.d
 COPY launch.sh /opt/launch/launch.sh
+RUN chmod +rx /opt/launch/launch.sh
 RUN chmod +rx /opt/launch/launch.d/*
 
 USER steam
@@ -53,4 +54,4 @@ EXPOSE 27015
 EXPOSE 27016/udp
 EXPOSE 27016
 
-ENTRYPOINT [ "./launch.sh" ]
+ENTRYPOINT [ "/opt/launch/launch.sh" ]
