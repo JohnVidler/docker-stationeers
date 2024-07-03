@@ -1,6 +1,6 @@
 services:
   stationeers:
-    image: docker-stationeers:latest
+    image: docker-stationeers:main
     stdin_open: true
     tty: true
     restart: unless-stopped
