@@ -6,10 +6,14 @@ ARG STEAM_APP_PATH="/home/steam/stationeers"
 ENV STEAM_APP_PATH="${STEAM_APP_PATH}"
 #RUN ./steamcmd.sh +force_install_dir "${STEAM_APP_PATH}" +login anonymous +app_update ${STEAM_APP_ID} validate +quit
 
+# BepInEx Mod Extra Stuff! Do not include the preceeding 'v' in the version
+ARG MOD_BEPINEX_VERSION="5.4.23.2"
+ENV MOD_BEPINEX_VERSION="${MOD_BEPINEX_VERSION}"
+
 # Stationeers requires a different version of libstdc++ and libc to actually work, so we roll this back
 USER root
 RUN touch /etc/apt/sources.list && sed -i 's/bullseye/bookworm/g' /etc/apt/sources.list && \
-    apt-get update && apt-get install -y libc6 libstdc++6 locales && locale-gen en_GB.UTF-8 && \
+    apt-get update && apt-get install -y unzip libc6 libstdc++6 locales && locale-gen en_GB.UTF-8 && \
     sed -i 's/bookworm/bullseye/g' /etc/apt/sources.list && \
     rm -rf /var/lib/apt/lists/*
 

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+pushd "${STEAM_APP_PATH}"
+
+echo "Installing BepInEx version ${MOD_BEPINEX_VERSION}"
+curl -LO "https://github.com/BepInEx/BepInEx/releases/download/v${MOD_BEPINEX_VERSION}/BepInEx_linux_x64_${MOD_BEPINEX_VERSION}.zip"
+unzip "BepInEx_linux_x64_${MOD_BEPINEX_VERSION}.zip"
+
+# Do we have a config directory yet?
+if [ ! -d BepInEx/config ]; then
+    echo "Running first-time BepInEx setup"
+    
+    # Update the runner script to have our executable
+    sed -i 's/^executable_name=""$/executable_name="rocketstation_DedicatedServer.x86_64"/' run_bepinex.sh
+    chmod u+x run_bepinex.sh
+fi
+
+popd
