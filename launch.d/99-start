@@ -2,7 +2,7 @@
 
 pushd "${STEAM_APP_PATH}"
 
-rocketstation_DedicatedServer.x86_64 \
+run_bepinex.sh \
         -batchmode \
         -nographics \
         -autostart \
