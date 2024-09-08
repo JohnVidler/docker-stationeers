@@ -2,7 +2,7 @@
 
 pushd "${STEAM_APP_PATH}"
 
-run_bepinex.sh \
+printf '%s\n' A | run_bepinex.sh \
         -batchmode \
         -nographics \
         -autostart \
