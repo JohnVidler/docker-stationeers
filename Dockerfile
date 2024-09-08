@@ -13,7 +13,7 @@ ENV MOD_BEPINEX_VERSION="${MOD_BEPINEX_VERSION}"
 # Stationeers requires a different version of libstdc++ and libc to actually work, so we roll this back
 USER root
 RUN touch /etc/apt/sources.list && sed -i 's/bullseye/bookworm/g' /etc/apt/sources.list && \
-    apt-get update && apt-get install -y locales unzip libc6 libstdc++6 locales && locale-gen en_GB.UTF-8 && \
+    apt-get update && apt-get install -y utils locales unzip libc6 libstdc++6 locales && locale-gen en_GB.UTF-8 && \
     sed -i 's/bookworm/bullseye/g' /etc/apt/sources.list && \
     rm -rf /var/lib/apt/lists/*
 
