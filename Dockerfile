@@ -9,6 +9,9 @@ ENV STEAM_APP_PATH="${STEAM_APP_PATH}"
 # BepInEx Mod Extra Stuff! Do not include the preceeding 'v' in the version
 ARG MOD_BEPINEX_VERSION="5.4.23.2"
 ENV MOD_BEPINEX_VERSION="${MOD_BEPINEX_VERSION}"
+ARG MOD_STATIONEERSMODS_VERSION="1.0.24.0"
+ENV MOD_STATIONEERSMODS_VERSION="${MOD_STATIONEERSMODS_VERSION}"
+
 
 # Stationeers requires a different version of libstdc++ and libc to actually work, so we roll this back
 USER root

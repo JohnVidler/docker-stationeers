@@ -12,6 +12,14 @@ if [ ! -f BepInEx/config/BepInEx.cfg ]; then
         unzip "BepInEx_linux_x64_${MOD_BEPINEX_VERSION}.zip"
     fi
 
+    pushd "BepInEx/plugins"
+    if [ ! -f StationeersMods.zip ]; then
+        echo "Downloading StationeersMods version ${MOD_STATIONEERSMODS_VERSION}"
+        curl -LO "https://github.com/jixxed/StationeersMods/releases/download/v${MOD_STATIONEERSMODS_VERSION}/StationeersMods.zip"
+        unzip "StationeersMods.zip"
+    fi
+    popd
+
     # Update the runner script to have our executable
     sed -i 's/^executable_name=""$/executable_name="rocketstation_DedicatedServer.x86_64"/' run_bepinex.sh
     chmod u+x run_bepinex.sh
