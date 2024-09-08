@@ -15,6 +15,8 @@ if [ ! -d BepInEx/config ]; then
     # Update the runner script to have our executable
     sed -i 's/^executable_name=""$/executable_name="rocketstation_DedicatedServer.x86_64"/' run_bepinex.sh
     chmod u+x run_bepinex.sh
+else
+    echo "BepInEx already present, skipped"
 fi
 
 popd
