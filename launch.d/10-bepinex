@@ -3,7 +3,7 @@
 pushd "${STEAM_APP_PATH}"
 
 # Do we have a config directory yet?
-if [ ! -d BepInEx/config ]; then
+if [ ! -f BepInEx/config/BepInEx.cfg ]; then
     echo "Running first-time BepInEx setup"
 
     if [ ! -f "BepInEx_linux_x64_${MOD_BEPINEX_VERSION}.zip" ]; then
