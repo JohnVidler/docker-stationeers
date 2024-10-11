@@ -1,6 +1,6 @@
 services:
   stationeers:
-    image: docker-stationeers:main
+    image: ghcr.io/johnvidler/docker-stationeers:main
     stdin_open: true
     tty: true
     restart: unless-stopped
