@@ -1,9 +1,24 @@
 #!/bin/bash
 
+pushd ${STEAM_APP_PATH}
+
+MOD_LIST_ARGS=""
+if [ -f modlist.txt ]; then
+    while read line; do
+        [[ "$line" =~ ^#.*$ ]] && continue
+        MOD_LIST_ARGS="${MOD_LIST_ARGS} +app_set_config ${STEAM_APP_ID} mod ${line}"
+    done <modlist.txt
+fi
+
+echo "Using modline: ${MOD_LIST_ARGS}"
+
+popd
+
 pushd ${STEAMCMDDIR}
 ./steamcmd.sh \
-        +force_install_dir "${STEAM_APP_PATH}" \
-        +login anonymous \
-        +app_update ${STEAM_APP_ID} validate \
-        +quit
+    +force_install_dir "${STEAM_APP_PATH}" \
+    +login anonymous \
+    +app_update ${STEAM_APP_ID} validate \
+    ${MOD_LIST_ARGS} \
+    +quit
 popd

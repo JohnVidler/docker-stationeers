@@ -1,13 +1,13 @@
 services:
   stationeers:
-    image: docker-stationeers:main
+    #image: docker-stationeers:bepinex
     build: .
     stdin_open: true
     tty: true
     restart: unless-stopped
     environment:
       SV_VISIBLE:       true
-      SV_NAME:          "Docker Stationeers"
+      SV_NAME:          "Docker Stationeers - EVIL THIS ONE"
       SV_DEFAULT_WORLD: "Moon"
       SV_PASSWORD:      "private"
       SV_MAX_PLAYERS:   10
@@ -20,3 +20,5 @@ services:
     volumes:
       - ./data:/home/steam/stationeers/saves
       - ./BepInEx:/home/steam/stationeers/BepInEx
+      - ./modlist.txt:/home/steam/stationeers/modlist.txt
+      - ./mods:/home/steam/stationeers/mods
