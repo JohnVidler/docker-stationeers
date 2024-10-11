@@ -1,6 +1,6 @@
 services:
   stationeers:
-    image: docker-stationeers:bepinex
+    image: ghcr.io/johnvidler/docker-stationeers:bepinex
     stdin_open: true
     tty: true
     restart: unless-stopped
