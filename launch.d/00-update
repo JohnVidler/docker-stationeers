@@ -4,9 +4,10 @@ pushd ${STEAM_APP_PATH}
 
 MOD_LIST_ARGS=""
 if [ -f modlist.txt ]; then
+    MOD_LIST_ARGS="${MOD_LIST_ARGS} +workshop_download_item"
     while read line; do
         [[ "$line" =~ ^#.*$ ]] && continue
-        MOD_LIST_ARGS="${MOD_LIST_ARGS} +workshop_download_item ${STEAM_APP_ID} ${line}"
+        MOD_LIST_ARGS="${MOD_LIST_ARGS} ${line}"
     done <modlist.txt
 fi
 
@@ -18,7 +19,8 @@ pushd ${STEAMCMDDIR}
 ./steamcmd.sh \
     +force_install_dir "${STEAM_APP_PATH}" \
     +login anonymous \
-    +app_update ${STEAM_APP_ID} validate \
+    +app_update ${STEAM_APP_ID} \
     ${MOD_LIST_ARGS} \
+    validate \
     +quit
 popd
