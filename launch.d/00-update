@@ -6,7 +6,7 @@ MOD_LIST_ARGS=""
 if [ -f modlist.txt ]; then
     while read line; do
         [[ "$line" =~ ^#.*$ ]] && continue
-        MOD_LIST_ARGS="${MOD_LIST_ARGS} +app_set_config ${STEAM_APP_ID} mod ${line}"
+        MOD_LIST_ARGS="${MOD_LIST_ARGS} +workshop_download_item ${STEAM_APP_ID} ${line}"
     done <modlist.txt
 fi
 
