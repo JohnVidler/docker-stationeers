@@ -12,7 +12,7 @@ If you find my work useful, consider tipping me via Ko-fi, every little helps an
 
 ## Running via `docker compose`
 
-Either clone this repository, or create a new folder with the `docker-compose.yml` file and `data` folder present, then from the same path as the `docker-compose.yml` file just
+Either clone this repository and copy the `docker-compose.yml.example` file to `docker-compose.yml`, or create a new folder with the `docker-compose.yml` file and `data` folder present, then from the same path as the `docker-compose.yml` file just
 run `docker compose up` (or `docker compose up -d` to run this in the background) and you should, after a little wait while the server builds have a full stationeers server instance.
 
 Save data will be saved in `data/saves` and scripts can be placed in `data/scripts`
