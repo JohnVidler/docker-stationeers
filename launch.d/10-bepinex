@@ -1,0 +1,79 @@
+#!/bin/bash
+
+pushd "${STEAM_APP_PATH}"
+
+# Do we have a config directory yet?
+if [ ! -f BepInEx/config/BepInEx.cfg ]; then
+    echo "Running first-time BepInEx setup"
+
+    if [ ! -f "BepInEx_linux_x64_${MOD_BEPINEX_VERSION}.zip" ]; then
+        echo "Downloading BepInEx version ${MOD_BEPINEX_VERSION}"
+        curl -LO "https://github.com/BepInEx/BepInEx/releases/download/v${MOD_BEPINEX_VERSION}/BepInEx_linux_x64_${MOD_BEPINEX_VERSION}.zip"
+        unzip "BepInEx_linux_x64_${MOD_BEPINEX_VERSION}.zip"
+    fi
+
+    if [ ! -d BepInEx/plugins ]; then
+        mkdir -p "BepInEx/plugins"
+        pushd "BepInEx/plugins"
+
+        echo "Downloading and unpacking jixxed/StationeersMods..."
+        if [ ! -f StationeersMods.zip ]; then
+            echo "Downloading StationeersMods version ${MOD_STATIONEERSMODS_VERSION}"
+            curl -LO "https://github.com/jixxed/StationeersMods/releases/download/v${MOD_STATIONEERSMODS_VERSION}/StationeersMods.zip"
+            #unzip "StationeersMods.zip"
+            bsdtar -xf StationeersMods.zip -s'|[^/]*/||'
+        fi
+
+        echo "Downloading and unpacking pch91/ServerFixes-Stationeers..."
+        if [ ! -f ServerFixes.zip ]; then
+            echo "Downloading StationeersMods version ${MOD_STATIONEERSMODS_VERSION}"
+            curl -LO "https://github.com/pch91/ServerFixes-Stationeers/releases/download/V1.0.0/ServerFixes.zip"
+            #unzip "ServerFixes.zip"
+            bsdtar -xf ServerFixes.zip -s'|[^/]*/||'
+        fi
+
+        popd
+    fi
+
+    # Update the runner script to have our executable
+    sed -i 's/^executable_name=""$/executable_name="rocketstation_DedicatedServer.x86_64"/' run_bepinex.sh
+    chmod u+x run_bepinex.sh
+else
+    echo "BepInEx already present, skipped"
+fi
+
+# Autocreate the modconfig.xml for anything in /mods
+cat > modconfig.xml << EOL
+<?xml version="1.0" encoding="utf-8"?>
+<ModConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Mods>
+EOL
+
+pushd mods
+for mod in *; do
+    if [ -d "$mod" ]; then
+        echo "Found MOD: ${mod}..."
+        cat <<EOL >> ../modconfig.xml
+<ModData>
+    <Id>${mod}</Id>
+    <IsEnabled>true</IsEnabled>
+    <LocalPath>${STEAM_APP_PATH}/mods/${mod}</LocalPath>
+</ModData>
+EOL
+    fi
+done
+popd
+
+cat <<EOL >> modconfig.xml
+<ModData>
+    <Id>1</Id>
+    <IsEnabled>true</IsEnabled>
+</ModData>
+</Mods>
+</ModConfig>
+EOL
+
+# Make the modconfig immutable... sigh.
+chattr +i modconfig.xml
+
+popd

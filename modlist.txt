@@ -1,2 +1,0 @@
-# Put your workshop mod IDs between these two comments
-# EOF - The parser needs a blank line at the end

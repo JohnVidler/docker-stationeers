@@ -2,23 +2,52 @@
 
 pushd "${STEAM_APP_PATH}"
 
-rocketstation_DedicatedServer.x86_64 \
-        -batchmode \
-        -nographics \
-        -autostart \
-        -difficulty "${SV_DIFFICULTY}" \
-        -loadlatest "${SV_SAVE_NAME}" ${SV_DEFAULT_WORLD} \
-        -settings \
-            StartLocalHost "True" \
-            ServerVisible "${SV_VISIBLE}" \
-            ServerName "${SV_NAME}" \
-            GamePort ${SV_PORT} \
-            ServerPassword "${SV_PASSWORD}" \
-            AutoSave "${SV_AUTOSAVE}" \
-            SaveInterval ${SV_SAVE_INTERVAL} \
-            ServerMaxPlayers ${SV_MAX_PLAYERS} \
-            UPNPEnabled "${SV_UPNP_ON}" \
-            ServerAuthSecret "${SV_AUTH_SECRET}" \
-            LocalIpAddress "0.0.0.0"
+chmod u+x run_bepinex.sh
+
+# Run the server with a timeout first, if we haven't got a config yet...
+# Yes, this is a stupid hack, but it works, and only affects initial startup times
+# so it's not _entirely_ terrible...
+if [ ! -f BepInEx/config/BepInEx.cfg ]; then
+    timeout 20 run_bepinex.sh \
+            -batchmode \
+            -nographics \
+            -autostart \
+            -difficulty "${SV_DIFFICULTY}" \
+            -loadlatest "${SV_SAVE_NAME}" ${SV_DEFAULT_WORLD} \
+            -settings \
+                StartLocalHost "True" \
+                ServerVisible "${SV_VISIBLE}" \
+                ServerName "${SV_NAME}" \
+                GamePort ${SV_PORT} \
+                ServerPassword "${SV_PASSWORD}" \
+                AutoSave "${SV_AUTOSAVE}" \
+                SaveInterval ${SV_SAVE_INTERVAL} \
+                ServerMaxPlayers ${SV_MAX_PLAYERS} \
+                UPNPEnabled "${SV_UPNP_ON}" \
+                ServerAuthSecret "${SV_AUTH_SECRET}" \
+                LocalIpAddress "0.0.0.0"
+
+    echo "Ran once to generate a BepInEx configuration. Restarting..."
+fi
+
+# Otherwise run a regular server instance
+run_bepinex.sh \
+            -batchmode \
+            -nographics \
+            -autostart \
+            -difficulty "${SV_DIFFICULTY}" \
+            -loadlatest "${SV_SAVE_NAME}" ${SV_DEFAULT_WORLD} \
+            -settings \
+                StartLocalHost "True" \
+                ServerVisible "${SV_VISIBLE}" \
+                ServerName "${SV_NAME}" \
+                GamePort ${SV_PORT} \
+                ServerPassword "${SV_PASSWORD}" \
+                AutoSave "${SV_AUTOSAVE}" \
+                SaveInterval ${SV_SAVE_INTERVAL} \
+                ServerMaxPlayers ${SV_MAX_PLAYERS} \
+                UPNPEnabled "${SV_UPNP_ON}" \
+                ServerAuthSecret "${SV_AUTH_SECRET}" \
+                LocalIpAddress "0.0.0.0"
 
 popd

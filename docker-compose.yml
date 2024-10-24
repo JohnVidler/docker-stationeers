@@ -19,4 +19,4 @@ services:
       - "8081:8081/tcp"
     volumes:
       - ./data:/home/steam/stationeers/saves
-      - ./modlist.txt:/home/steam/stationeers/modlist.txt
+      - ./mods:/home/steam/stationeers/mods
