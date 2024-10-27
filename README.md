@@ -37,3 +37,12 @@ Note that to connect to the server you'll need to have ports 27015/udp, 27016/ud
 - SV_MAX_PLAYERS - Maximum players connected, defaults to `"10"`
 - SV_UPNP_ON - `"True"` or `"False"`, defaults to `True`, recommended
 - SV_DIFFICULTY - Any valid difficulty level, defaults to `"normal"`
+
+## Common 'Gotcha!' Fixes
+
+If you find your server isn't coming up at all (not listed on the server list and not getting past a memory clean-up stage in the startup sequence) it might be that your `data/` mount has the wrong file permissions and the server is just freezing up when it tries to create the multiplayer save files.
+This tends to happen on Windows hosts where users aren't quite the same thing as Linux users, so Docker does slightly dumb things with the mappings.
+
+To fix this, shut down the container, copy everything from your data directory to somewhere safe, then delete the top-level data directory, restart the container briefly to let it create a new data directory, the stop it again. You can then paste your old save back into the new data directory, and restart the container.
+
+There is a fix for this behaviour in some the development builds here, but it has't made it back to the main branch yet; but soon this won't be an issue any more.
