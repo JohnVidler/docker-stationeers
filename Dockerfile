@@ -2,9 +2,10 @@ FROM --platform=linux/amd64 cm2network/steamcmd:latest
 
 ARG STEAM_APP_ID="600760"
 ENV STEAM_APP_ID="${STEAM_APP_ID}"
+ARG STEAM_APP_BRANCH="public"
+ENV STEAM_APP_BRANCH="${STEAM_APP_ID}"
 ARG STEAM_APP_PATH="/home/steam/stationeers"
 ENV STEAM_APP_PATH="${STEAM_APP_PATH}"
-#RUN ./steamcmd.sh +force_install_dir "${STEAM_APP_PATH}" +login anonymous +app_update ${STEAM_APP_ID} validate +quit
 
 # Stationeers requires a different version of libstdc++ and libc to actually work, so we roll this back
 USER root

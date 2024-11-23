@@ -4,6 +4,6 @@ pushd ${STEAMCMDDIR}
 ./steamcmd.sh \
         +force_install_dir "${STEAM_APP_PATH}" \
         +login anonymous \
-        +app_update ${STEAM_APP_ID} validate \
+        +app_update ${STEAM_APP_ID} -beta ${STEAM_APP_BRANCH} validate \
         +quit
 popd
